@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ornithopter</title>
-    <link>https://mint.moe/</link>
-    <description>Recent content on Ornithopter</description>
+    <title>Posts on Ornithopter</title>
+    <link>https://mint.moe/post/</link>
+    <description>Recent content in Posts on Ornithopter</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn</language>
     <lastBuildDate>Sun, 06 Sep 2020 03:44:18 +0800</lastBuildDate>
     
-	<atom:link href="https://mint.moe/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mint.moe/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

@@ -3,11 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://mint.moe/categories/</loc>
+    <loc>https://mint.moe/post/my-first-post/</loc>
+    <lastmod>2020-09-06T03:44:18+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://mint.moe/</loc>
+    <lastmod>2020-09-06T03:44:18+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mint.moe/post/</loc>
+    <lastmod>2020-09-06T03:44:18+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mint.moe/categories/</loc>
   </url>
   
   <url>
