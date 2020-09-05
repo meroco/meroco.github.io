@@ -1,14 +1,14 @@
 baseurl = "https://mint.moe/"
-languageCode = "cn"
-defaultContentLanguage = "cn"
+languageCode = "zh-Hans"
+defaultContentLanguage = "zh"
 title = "Ornithopter"
 theme = "dream"
 
 # copyright = ""
 
-# googleAnalytics = ""
+ googleAnalytics = "UA-82270338-1"
 
-# disqusShortname = ""
+ disqusShortname = "misuzu"
 
 # enableRobotsTXT = true
 
@@ -18,10 +18,11 @@ theme = "dream"
   linkColor = "seagreen"
 
   author = "MEROCO"
-  description = "摄影/绘画"
-  avatar = "/img/avatar.jpg"
+  description = "Radical Dreamers."
+  avatar = "https://i.loli.net/2020/02/19/KA8s59VWo1ZyRkP.png"
   motto = "See you, space cowboy..."
-
+  categoriesLimitInHeader = 5
+    
   rss = true
 
   # utterancesRepo = ""
@@ -37,7 +38,16 @@ theme = "dream"
 
   siteStartYear = 2016
 
-  # favicon = "/favicon.ico"
+  favicon = "https://i.loli.net/2020/02/20/Sqf9cNiLoZ3z781.png"
+
+  highlightjs = true
+  # highlightjsCDN = "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"
+highlightjsExtraLanguages = ["ocaml"]
+  highlightjsTheme = "gruvbox-light"
+  highlightjsThemeDark = "gruvbox-dark"
+  
+  # search
+   enableSearch = true
 
   # options
   showSummaryCoverInPost = true
