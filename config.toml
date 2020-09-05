@@ -1,0 +1,49 @@
+baseurl = "https://mint.moe/"
+languageCode = "cn"
+defaultContentLanguage = "cn"
+title = "Ornithopter"
+theme = "dream"
+
+# copyright = ""
+
+# googleAnalytics = ""
+
+# disqusShortname = ""
+
+# enableRobotsTXT = true
+
+[params]
+  background = "black"
+  # backgroundImage = "/me/background.jpg"
+  linkColor = "seagreen"
+
+  author = "MEROCO"
+  description = "摄影/绘画"
+  avatar = "/img/avatar.jpg"
+  motto = "See you, space cowboy..."
+
+  rss = true
+
+  # utterancesRepo = ""
+  
+  email = "meroco.xu@gmail.com"
+  # twitter = ""
+  # facebook = ""
+  # instagram = ""
+  # linkedin = ""
+  # github = ""
+  # stackoverflow = ""
+  # codepen = ""
+
+  siteStartYear = 2016
+
+  # favicon = "/favicon.ico"
+
+  # options
+  showSummaryCoverInPost = true
+
+  # dark mode
+  darkLinkColor = "darkseagreen"
+  darkNav = true 
+  dark404 = true
+
