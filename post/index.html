@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cn">
+<html lang="zh-Hans">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,13 @@
     <title> | Ornithopter</title>
 
     
+<link href="https://i.loli.net/2020/02/20/Sqf9cNiLoZ3z781.png" rel="shortcut icon" type="image/x-icon" />
+
 
 
 
 <meta name="author" content="MEROCO" />
-<meta name="description" content="摄影/绘画" />
+<meta name="description" content="Radical Dreamers." />
 
 
 
@@ -21,7 +23,7 @@
 
 
 <meta property="og:title" content="Posts" />
-<meta property="og:description" content="摄影/绘画" />
+<meta property="og:description" content="Radical Dreamers." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://mint.moe/post/" />
 <meta property="og:updated_time" content="2020-09-06T03:44:18+08:00" />
@@ -30,7 +32,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Posts"/>
-<meta name="twitter:description" content="摄影/绘画"/>
+<meta name="twitter:description" content="Radical Dreamers."/>
 
 
 <link rel="stylesheet" href="/css/semantic.min.css" />
@@ -64,13 +66,17 @@
 <nav class="ui secondary inverted menu dream-menu">
 
   <div class="item">
-    <i class="large link bullseye icon dream-flip-toggle" title=""></i>
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
   </div>
   <div class="item">
-    <i class="large link home icon" title="" onclick="window.location.href = 'https:\/\/mint.moe\/'"></i>
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/mint.moe\/'"></i>
   </div>
   <div class="item">
     <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+  
+  <div class="item">
+    <i class="large link search icon" onclick="toggleSearch()"></i>
   </div>
   
 </nav>
@@ -86,22 +92,22 @@
   <section class="ui top attached center aligned segment">
     <div class="ui small circular image">
       
-        <img src="/img/avatar.jpg">
+        <img src="https://i.loli.net/2020/02/19/KA8s59VWo1ZyRkP.png">
       
     </div>
 
     
-    <h1 class="ui medium header">MEROCO<div class="sub header" style="margin-top: 0.5rem;">See you, space cowboy...</div>
+    <h1 class="ui medium header">MEROCO 的博客<div class="sub header" style="margin-top: 0.5rem;">See you, space cowboy...</div>
     </h1>
     
 
     <div class="ui horizontal list">
       
       <a class="item" href="/tags">
-        <i class="tags icon" title=""></i>
+        <i class="tags icon" title="所有标签"></i>
       </a>
       <a class="item" href="/categories">
-        <i class="th list icon" title=""></i>
+        <i class="th list icon" title="所有分类"></i>
       </a>
     </div>
   </section>
@@ -163,7 +169,7 @@
       <article class="ui attached segment card dream-card">
   <a class="image" href="https://mint.moe/post/my-first-post/">
     
-      <img src="/img/default1.jpg" alt="My First Post" />
+      <img src="/img/default4.jpg" alt="My First Post" />
     
   </a>
 
@@ -174,7 +180,7 @@
     <div class="meta">
       <p class="date">
         
-          Sunday, Sep 6, 2020
+          ，九月 6 日，2020 年
         
       </p>
       <p class="author">
@@ -192,7 +198,7 @@
   <div class="extra content">
     <a>
       <i class="clock icon"></i>
-      1
+      1 分钟阅读
     </a>
   </div>
 </article>
@@ -220,7 +226,7 @@
   <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
     <article>
       <div class="ui top attached segment">
-        <h3 class="ui header"></h3>
+        <h3 class="ui header">社交链接</h3>
       </div>
       <div class="ui bottom attached segment">
         <nav class="ui secondary menu dream-menu dream-socials">
@@ -264,6 +270,29 @@
 
   
     
+      <section class="sixteen wide mobile eight wide tablet eight wide computer column dream-column">
+        <footer class="ui segment">
+          <div id="disqus_thread"></div>
+          <script>
+            
+
+
+            var disqus_config = function () {
+              this.page.url = 'https:\/\/mint.moe\/post\/';  
+              this.page.identifier = '/'; 
+            };
+
+            (function() { 
+              var d = document, s = d.createElement('script');
+              s.src = 'https://' + 'misuzu' + '.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </footer>
+      </section>
+    
   
 </div>
 
@@ -289,6 +318,41 @@
 
 
     
+      <div class="ui inverted segment" id="dream-search">
+  <div class="ui search">
+    <div class="ui transparent input">
+      <input class="prompt" type="text" placeholder="搜索" />
+    </div>
+    <div class="results"></div>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    $.getJSON('https:\/\/mint.moe\//index.json', function (data) {
+      $('.ui.search').search({
+        source: data,
+        searchFields: ['title'],
+        showNoResults: true,
+      })
+    })
+  })
+</script>
+<script src="/js/search.js"></script>
+
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-82270338-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
     
   </body>
