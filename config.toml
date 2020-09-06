@@ -10,7 +10,17 @@ theme = "dream"
 
  disqusShortname = "misuzu"
 
-# enableRobotsTXT = true
+ enableRobotsTXT = true
+
+ hasCJKLanguage = true
+ 
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
 [params]
   background = "black"
@@ -28,6 +38,7 @@ theme = "dream"
   # utterancesRepo = ""
   
   email = "meroco.xu@gmail.com"
+  weibo = "meroco"
   # twitter = ""
   # facebook = ""
   # instagram = ""
@@ -57,3 +68,8 @@ highlightjsExtraLanguages = ["ocaml"]
   darkNav = true 
   dark404 = true
 
+[Menu]
+[[Menu.Main]]
+  Name = "首页"
+  URL = "/"
+  Weight = 1
