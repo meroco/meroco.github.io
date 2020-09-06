@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>设计 on Ornithopter</title>
+    <link>https://mint.moe/categories/%E8%AE%BE%E8%AE%A1/</link>
+    <description>Recent content in 设计 on Ornithopter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Sun, 25 Dec 2016 12:56:33 +0000</lastBuildDate>
+    
+	<atom:link href="https://mint.moe/categories/%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>圣诞节（2016）</title>
+      <link>https://mint.moe/post/christmas_2016/</link>
+      <pubDate>Sun, 25 Dec 2016 12:56:33 +0000</pubDate>
+      
+      <guid>https://mint.moe/post/christmas_2016/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2020/02/19/hyGxJAopCd74TRf.jpg&#34; alt=&#34;Christmas_2016.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;使用软件:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cinema 4D&lt;/li&gt;
+&lt;li&gt;Photoshop&lt;/li&gt;
+&lt;li&gt;Illustrator&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>凿刻文字效果</title>
+      <link>https://mint.moe/post/chiseled_text/</link>
+      <pubDate>Fri, 14 Oct 2016 20:11:48 +0000</pubDate>
+      
+      <guid>https://mint.moe/post/chiseled_text/</guid>
+      <description>前些日子给博客随意做了一个 Logo，上图是素模渲染效果。文字使用凿刻加挤压的复合效果，细节丰富，层次感强烈。凿刻文字效果曾困扰过笔者不少时日</description>
+    </item>
+    
+  </channel>
+</rss>

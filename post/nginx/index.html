@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>关于 NGINX 的二三事 | Ornithopter</title>
+
+    
+<link href="https://i.loli.net/2020/02/20/Sqf9cNiLoZ3z781.png" rel="shortcut icon" type="image/x-icon" />
+
+
+
+
+<meta name="author" content="MEROCO" />
+<meta name="description" content="摄影/绘画" />
+
+
+
+<meta name="generator" content="Hugo 0.74.3" />
+
+<link rel="canonical" href="https://mint.moe/post/nginx/" />
+
+
+<meta property="og:title" content="关于 NGINX 的二三事" />
+<meta property="og:description" content="NGINX 简介 {% ruby Nginx|engine x %} 是一个网页服务器，它能反向代理 HTTP, HTTPS, SMTP, POP3, IMAP 的协议链接，以及一个负载均衡器和一个 HTTP 缓存。 起初是供俄国大型的门户网站及搜索引擎 {% ruby" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mint.moe/post/nginx/" />
+<meta property="article:published_time" content="2016-10-16T13:12:05+00:00" />
+<meta property="article:modified_time" content="2016-10-16T13:12:05+00:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="关于 NGINX 的二三事"/>
+<meta name="twitter:description" content="NGINX 简介 {% ruby Nginx|engine x %} 是一个网页服务器，它能反向代理 HTTP, HTTPS, SMTP, POP3, IMAP 的协议链接，以及一个负载均衡器和一个 HTTP 缓存。 起初是供俄国大型的门户网站及搜索引擎 {% ruby"/>
+
+
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/OverlayScrollbars.min.css" />
+<link rel="stylesheet" href="/css/github-markdown.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+
+<style>
+  a {
+    color: babyblue !important;
+  }
+</style>
+
+
+
+<style>
+  .inverted a {
+     color: aqua !important;
+  }
+</style>
+
+
+    
+
+
+  
+    <link rel="stylesheet" data-highlight href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/gruvbox-light.min.css" />
+  
+
+
+
+  </head>
+
+  
+  <body style="background: black;">
+  
+    
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/mint.moe\/'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+  
+  <div class="item">
+    <i class="large link search icon" onclick="toggleSearch()"></i>
+  </div>
+  
+</nav>
+
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          <div class="dream-max-width">
+            
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single">
+
+    <section class="ui top attached segment" id="dream-save-post-as-img">
+      <header style="margin-top: 0 !important;">
+        <h1 class="ui large header">
+          关于 NGINX 的二三事
+          <div class="sub header">
+            @
+            
+              MEROCO
+            
+            · Sunday, Oct 16, 2016
+            · 2 分钟阅读
+            · 更新于 Oct 16, 2016
+          </div>
+        </h1>
+      </header>
+
+      
+        <img class="ui image" style="margin-top: 2rem;" src="https://i.loli.net/2020/02/20/n3UcX6Nv81KIlV7.jpg" />
+      
+
+      <article style="margin-top: 2rem;"><h1 id="nginx-简介">NGINX 简介</h1>
+<blockquote>
+<p><a href="https://nginx.org/en/">{% ruby Nginx|engine x %}</a> 是一个网页服务器，它能反向代理 <code>HTTP</code>, <code>HTTPS</code>, <code>SMTP</code>, <code>POP3</code>, <code>IMAP</code> 的协议链接，以及一个负载均衡器和一个 <code>HTTP</code> 缓存。
+起初是供俄国大型的门户网站及搜索引擎 <a href="https://www.rambler.ru">{% ruby Rambler|Рамблер %}</a> 使用。此软件 <a href="https://zh.wikipedia.org/wiki/BSD%E8%AE%B8%E5%8F%AF%E8%AF%81">BSD-like</a> 协议下发行，可以在 <code>UNIX</code>、<code>GNU/Linux</code>、<code>BSD</code>、<code>Mac OS X</code>、<code>Solaris</code>，以及 <code>Microsoft Windows</code> 等操作系统中运行。</p>
+</blockquote>
+<p>以上是维基百科对 Nginx 的描述。</p>
+<!-- more -->
+<hr>
+<h1 id="编译安装">编译安装</h1>
+<p>编译安装区别于 <code>yum</code> 安装，最大的优点就是能随心所欲，缺点是过程略微复杂。</p>
+<h2 id="环境和目标">环境和目标</h2>
+<table>
+<thead>
+<tr>
+<th align="center"><a href="https://www.aliyun.com/product/ecs"><img src="https://img.shields.io/badge/Aliyun-ECS-orange.svg" alt=""></a></th>
+<th align="center"><a href="https://www.centos.org"><img src="https://img.shields.io/badge/CentOS-7.2-yellow.svg" alt=""></a></th>
+<th align="center"><a href="https://nginx.org/en/"><img src="https://img.shields.io/badge/NGINX-1.11.1-brightgreen.svg" alt=""></a></th>
+<th align="center"><a href="https://www.openssl.org"><img src="https://img.shields.io/badge/OpenSSL-1.0.2h-blue.svg" alt=""></a></th>
+</tr>
+</thead>
+</table>
+<h2 id="安装编译工具和依赖包">安装编译工具和依赖包</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ yum -y install gcc gcc-c++ autoconf automake
+$ yum -y install zlib zlib-devel openssl openssl-devel pcre-devel
+</code></pre></div><p>如果报错搜索错误代码解决。</p>
+<h2 id="新建匿名用户和用户组">新建匿名用户和用户组</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo groupadd -r nginx
+$ sudo useradd -s /sbin/nologin -g nginx -r nginx
+</code></pre></div><h2 id="下载源码">下载源码</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ cd /root
+$ wget http://nginx.org/download/nginx-1.11.1.tar.gz
+$ wget https://www.openssl.org/source/openssl-1.0.2h.tar.gz
+</code></pre></div><p>建议去官网查看下载当前最新的稳定版本。下载新版 <a href="https://www.openssl.org">OpenSSL</a> 的目的是为了支持 <code>HTTP/2</code>。</p>
+<h2 id="解压并编译安装">解压并编译安装</h2>
+<h3 id="解压文件">解压文件</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ tar -zxcf nginx-1.11.1.tar.gz
+$ mv openssl-1.0.2h.tar.gz /root/nginx-1.11.1
+$ cd /root/nginx-1.11.1
+$ tar -zxcf openssl-1.0.2h.tar.gz
+</code></pre></div><h3 id="配置编译参数">配置编译参数</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">./configure --user<span style="color:#f92672">=</span>nginx --group<span style="color:#f92672">=</span>nginx --prefix<span style="color:#f92672">=</span>/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_v2_module --with-http_gzip_static_module --with-ipv6 --with-http_sub_module --with-openssl<span style="color:#f92672">=</span>openssl-1.0.2h
+</code></pre></div><p>这是笔者的编译参数，可以通过命令 <code>./configure --help</code> 查看全部参数说明，然后根据需要选择。</p>
+<h3 id="编译安装-1">编译安装</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ make <span style="color:#f92672">&amp;&amp;</span> make install
+</code></pre></div><p>如果一切顺利很快就能完成安装。</p>
+<hr>
+<h1 id="常用命令">常用命令</h1>
+<h2 id="启动">启动</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ cd /usr/local/nginx/sbin
+$ ./nginx
+</code></pre></div><h2 id="重启">重启</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ cd /usr/local/nginx/sbin
+$ ./nginx -s reload
+</code></pre></div><h2 id="配置文件校验">配置文件校验</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ cd /usr/local/nginx/sbin
+$ ./nginx -t
+</code></pre></div><h2 id="关闭">关闭</h2>
+<h3 id="查询主进程号">查询主进程号</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ ps -ef | grep nginx
+</code></pre></div><h3 id="从容停止">从容停止</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ kill -QUIT 主进程号
+</code></pre></div><h3 id="快速停止">快速停止</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ kill -TERM 主进程号
+</code></pre></div><h3 id="强制停止">强制停止</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ kill -9 nginx
+</code></pre></div><h3 id="pid-停止">PID 停止</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ kill -信号类型 ‘/usr/local/nginx/logs/nginx.pid’
+</code></pre></div><h3 id="解决-pid-丢失">解决 PID 丢失</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
+</code></pre></div><h2 id="版本信息">版本信息</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ cd /usr/local/nginx/sbin
+$ ./nginx -V
+</code></pre></div><h2 id="升级">升级</h2>
+<p>同安装基本类似，下载、解压、编译、升级。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ make upgrade
+</code></pre></div><hr>
+<h1 id="配置文件参数">配置文件参数</h1>
+<p><code>nginx.conf</code> 文件的配置参数。以笔者的配置参数作为参考，主要做了 <code>HTTP</code> 强制跳转 <code>HTTPS</code> 并开启了 <code>HTTP/2</code> 两个功能。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">server <span style="color:#f92672">{</span>
+        listen 80;
+        listen <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:80;
+
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">301</span> https://$host$request_uri;
+    <span style="color:#f92672">}</span>
+server
+    <span style="color:#f92672">{</span>
+        listen  <span style="color:#ae81ff">443</span> ssl http2;
+        listen <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:443 ssl http2;
+        server_name misuzu.moe www.misuzu.moe blog.misuzu.moe;
+        index index.html index.htm index.php;
+        root  /home/www/blog;
+        
+        ssl_certificate /home/www/ssl/misuzu.crt;
+        ssl_certificate_key /home/www/ssl/misuzu.key;
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+        ssl_session_cache shared:SSL:20m;
+        ssl_session_timeout 60m;
+    <span style="color:#f92672">}</span>
+</code></pre></div><hr>
+<h1 id="结语">结语</h1>
+<blockquote>
+<p>好记性不如烂笔头。</p>
+</blockquote>
+<p>个人笔记。</p>
+</article>
+    </section>
+
+    <footer class="ui attached segment dream-tags">
+      
+          <a class="ui label">暂无标签</a>
+      
+      <div
+        class="ui label"
+        style="float: right; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>保存为图片
+      </div>
+    </footer>
+
+    
+
+    
+      <footer class="ui bottom attached stacked segment post-disqus-area" data-html2canvas-ignore="true">
+        <div id="disqus_thread"></div>
+        <script>
+          
+
+
+          var disqus_config = function () {
+            this.page.url = 'https:\/\/mint.moe\/post\/nginx\/';  
+            this.page.identifier = '\/post\/nginx\/'; 
+          };
+
+          (function() { 
+            var d = document, s = d.createElement('script');
+            s.src = 'https://' + 'misuzu' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </footer>
+    
+    
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="https://i.loli.net/2020/02/19/KA8s59VWo1ZyRkP.png">
+      
+    </div>
+
+    
+    <h1 class="ui medium header">MEROCO <div class="sub header" style="margin-top: 0.5rem;">See you, space cowboy...</div>
+    </h1>
+    
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+      <a class="item" href="/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+    </div>
+  </section>
+
+  
+
+  
+  <section class="ui attached segment dream-categories">
+    <div class="ui accordion">
+      
+      
+      
+      
+      
+
+      
+        
+
+        
+          <div class="title">
+            <i class="dropdown icon"></i>
+            <a href="/categories/hifi" class="item">hifi</a>
+          </div>
+          <div class="content">
+            <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/hi-fi_2017-2018/" class="item">Hi-Fi 2017-2018</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/yamaha_hph200/" class="item">YAMAHA HPH-200</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/niuniu_audio_amp/" class="item">NIUNIU AUDIO AMP「牛牛歌德放」</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/grado_gh2/" class="item">Grado GH2「歌德 GH2」</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/he-1/" class="item">Sennheiser HE-1</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/lp_earphone_bag/" class="item">乐彼耳塞包</a>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        
+      
+        
+
+        
+          <div class="title">
+            <i class="dropdown icon"></i>
+            <a href="/categories/%E5%85%B6%E5%AE%83" class="item">其它</a>
+          </div>
+          <div class="content">
+            <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/travis_github-pages/" class="item">Travis CI 自动持续化部署博客</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/aliyun_ecs/" class="item">阿里云 ECS</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/nginx/" class="item">关于 NGINX 的二三事</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/imgsuzu/" class="item">鈴圖床</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/dribbble/" class="item">入驻 Dribbble</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/https_http2/" class="item">HTTPS&#43;HTTP/2.0</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/about_hexo/" class="item">HEXO 的优缺点</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/hexo_vps/" class="item">HEXO&#43;VPS 部属流程</a>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        
+      
+        
+
+        
+          <div class="title">
+            <i class="dropdown icon"></i>
+            <a href="/categories/%E5%AE%9D%E5%8F%AF%E6%A2%A6" class="item">宝可梦</a>
+          </div>
+          <div class="content">
+            <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/final_triples/" class="item">别了，三打</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/my_gen6/" class="item">「第六世代」回顾</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/unova_classic/" class="item">「合众大会」風林火山</a>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        
+      
+        
+
+        
+          <div class="title">
+            <i class="dropdown icon"></i>
+            <a href="/categories/%E6%89%8B%E5%8A%9E" class="item">手办</a>
+          </div>
+          <div class="content">
+            <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/makoto/" class="item">Kanon 沢渡真琴</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/swordfish-gsc/" class="item">【GSC】Swordfish II (カウボーイビバップ 1/48 ソードフィッシュII)</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/swordfish_ii/" class="item">ポピニカ魂 PX-05『カウボーイビバップ』ソードフィッシュII</a>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        
+      
+        
+
+        
+          <div class="title">
+            <i class="dropdown icon"></i>
+            <a href="/categories/%E6%91%84%E5%BD%B1" class="item">摄影</a>
+          </div>
+          <div class="content">
+            <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/nikon-f/" class="item">「传奇的开始」Nikon F</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/rollei35s/" class="item">Rollei 35S 「禄莱35S」</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/memoir_of_film_03/" class="item">【菲林记】11-12月胶片记录</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/memoir_of_film_02/" class="item">【菲林记】10月胶片记录</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/memoir_of_film_01/" class="item">【菲林记】8月胶片记录</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/wuxi_neko/" class="item">扫街与撸猫记录</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/olympus_60_marco/" class="item">M.ZUIKO DIGITAL ED 60mm F2.8 Macro</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a href="/post/memoir_of_film_04/" class="item">【菲林记】第4期-探访北大街</a>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        
+      
+        
+
+        
+      
+        
+
+        
+      
+
+      
+        <div class="title">
+          <a class="item" href="/categories" style="padding-left: 0.5rem;">......</a>
+        </div>
+      
+    </div>
+  </section>
+  
+
+  <section class="ui attached segment header-socials">
+    <nav class="ui secondary menu dream-menu dream-socials">
+  
+    <div class="item">
+      <a href="/index.xml">
+        <i class=" rss square icon" title="RSS"></i>
+      </a>
+    </div>
+  
+  
+    <div class="item">
+      <a href="mailto:meroco.xu@gmail.com">
+        <i class=" mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class="item">
+      <a href="http://wpa.qq.com/msgrd?v=3&uin=6533419&site=qq&menu=yes" target="_blank">
+        <i class=" qq icon" title="QQ"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+    <div class="item">
+      <a href="https://weibo.com/meroco" target="_blank">
+        <i class=" weibo icon" title="Weibo"></i>
+      </a>
+    </div>
+  
+
+
+</nav>
+
+  </section>
+
+  <section class="ui bottom attached center aligned segment">
+    
+      <p>© 2016 - 2020 Ornithopter</p>
+    
+
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+    
+  </section>
+</article>
+
+  </div>
+</div>
+
+          </div>
+        </section>
+        <section class="back">
+          <div class="dream-max-width">
+            <div class="ui centered relaxed grid dream-grid dream-back">
+  
+  
+  
+    <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+      <article>
+        <div class="ui top attached segment">
+          <h3 class="ui header">友链</h3>
+        </div>
+        <div class="ui bottom attached segment markdown-body">
+          <p><img src="https://i.loli.net/2020/02/20/7GkrmF6eQyfibRB.jpg" alt="headphone_sket-dance.jpg"></p>
+<h3 id="申请原则">申请原则</h3>
+<p>留言就好啦，不作死的博客都很欢迎。</p>
+<h3 id="左邻右舍">左邻右舍</h3>
+
+        </div>
+      </article>
+    </section>
+  
+    <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+      <article>
+        <div class="ui top attached segment">
+          <h3 class="ui header">关于</h3>
+        </div>
+        <div class="ui bottom attached segment markdown-body">
+          <p><img src="https://i.loli.net/2020/02/20/wYqPhp3ED9mojXH.jpg" alt="about.jpg"></p>
+<ul>
+<li>昵称：meroco/傲娇呆毛</li>
+<li>生日：1993/07/29</li>
+<li>标签：绘画、摄影、唱片收藏、日麻新手、公主连结玩家、前宝可梦训练师、鬼泣4核心玩家、黑暗之魂1核心玩家、菅野洋子应援、渡边信一郎粉丝、库布里克影迷&hellip;</li>
+<li>个人信息页：<a href="https://meroco.me/">meroco.me</a></li>
+<li>曾制作虾米动漫音乐周刊，现制作组集体摸鱼中&hellip;</li>
+</ul>
+
+        </div>
+      </article>
+    </section>
+  
+    <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+      <article>
+        <div class="ui top attached segment">
+          <h3 class="ui header">设备</h3>
+        </div>
+        <div class="ui bottom attached segment markdown-body">
+          <ul>
+<li><del>数码相机：Olympus OM-D EM10II, Olympus M.Zuiko Digital 17mm F1.8, Olympus M.Zuiko Digital 75mm F1.8</del></li>
+<li>胶片相机：</li>
+<li>135画幅：Rollei 35S Silver Oak Leaf Limited Edition, Nikon F, Nikon FM2, Olympus Pen F, Olympus XA, <del>Konica Tomato</del>, <del>Pentax MX</del></li>
+<li>F卡口尼克尔镜头：Nikkor 20mm F3.5 AI-S, Nikkor 28mm F2.8 AI-S, Nikkor 50mm F1.4 AI-S</li>
+<li>Pen F瑞光镜头：E.Zuiko Auto-W 25mm F4, F.Zuiko Auto-S 38mm F1.8, E.zuiko Auto-S 38mm F2.8(Pancake)</li>
+<li>120画幅：Rolleiflex 3.5F, <del>Rolleicord Vb</del></li>
+<li>测光表：Sekonic L-308S</li>
+<li>扫描仪：Epson Perfection V550 Photo</li>
+<li>耳机：Sennheiser HD600, Final Audio E1000</li>
+<li>CD机：Pioneer PD-T04S</li>
+<li>耳放：Niuniu Audio AMP Designed for Grado</li>
+<li>DAP：Apple iPod Classic 3</li>
+<li>录音笔：ZOOM H1</li>
+<li>光驱：Pioneer BDR-XU03C, Pioneer DVR-XU01C</li>
+</ul>
+<p>以上均为当前持有。</p>
+
+        </div>
+      </article>
+    </section>
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">社交</h3>
+      </div>
+      <div class="ui bottom attached segment">
+        <nav class="ui secondary menu dream-menu dream-socials">
+  
+    <div class="item">
+      <a href="/index.xml">
+        <i class="large rss square icon" title="RSS"></i>
+      </a>
+    </div>
+  
+  
+    <div class="item">
+      <a href="mailto:meroco.xu@gmail.com">
+        <i class="large mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+    <div class="item">
+      <a href="http://wpa.qq.com/msgrd?v=3&uin=6533419&site=qq&menu=yes" target="_blank">
+        <i class="large qq icon" title="QQ"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+    <div class="item">
+      <a href="https://weibo.com/meroco" target="_blank">
+        <i class="large weibo icon" title="Weibo"></i>
+      </a>
+    </div>
+  
+
+
+</nav>
+
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </section>
+
+  
+    
+      <section class="sixteen wide mobile eight wide tablet eight wide computer column dream-column">
+        <footer class="ui segment">
+          <div id="disqus_thread"></div>
+          <script>
+            
+
+
+            var disqus_config = function () {
+              this.page.url = 'https:\/\/mint.moe\/post\/nginx\/';  
+              this.page.identifier = '/'; 
+            };
+
+            (function() { 
+              var d = document, s = d.createElement('script');
+              s.src = 'https://' + 'misuzu' + '.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', +new Date());
+              (d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </footer>
+      </section>
+    
+  
+</div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+  window.darkNav =  true 
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+
+    
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"></script>
+
+  
+    
+      <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/languages/ocaml.min.js"></script>
+     
+  
+
+  <script>
+  hljs.initHighlightingOnLoad()
+  setHighlightTheme()
+
+  function setHighlightTheme() {
+    var isDark = localStore.getItem('hugo-theme-dream-is-dark')
+    var lightTheme = "gruvbox-light"
+    var darkTheme = "gruvbox-dark"
+    var theme = isDark ? darkTheme : lightTheme
+
+    $('link[data-highlight]').attr('href', 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/' + theme + '.min.css')
+    $('pre').css('background', isDark ? '#333' : '')
+  }
+</script>
+
+
+
+
+
+    
+      <div class="ui inverted segment" id="dream-search">
+  <div class="ui search">
+    <div class="ui transparent input">
+      <input class="prompt" type="text" placeholder="搜索" />
+    </div>
+    <div class="results"></div>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    $.getJSON('https:\/\/mint.moe\//index.json', function (data) {
+      $('.ui.search').search({
+        source: data,
+        searchFields: ['title'],
+        showNoResults: true,
+      })
+    })
+  })
+</script>
+<script src="/js/search.js"></script>
+
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-82270338-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+    
+  </body>
+</html>

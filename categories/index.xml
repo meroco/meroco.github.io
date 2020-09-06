@@ -6,9 +6,73 @@
     <description>Recent content in Categories on Ornithopter</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
+    <lastBuildDate>Thu, 12 Mar 2020 16:12:30 +0000</lastBuildDate>
     
 	<atom:link href="https://mint.moe/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>摄影</title>
+      <link>https://mint.moe/categories/%E6%91%84%E5%BD%B1/</link>
+      <pubDate>Thu, 12 Mar 2020 16:12:30 +0000</pubDate>
+      
+      <guid>https://mint.moe/categories/%E6%91%84%E5%BD%B1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>手办</title>
+      <link>https://mint.moe/categories/%E6%89%8B%E5%8A%9E/</link>
+      <pubDate>Wed, 11 Mar 2020 14:51:30 +0000</pubDate>
+      
+      <guid>https://mint.moe/categories/%E6%89%8B%E5%8A%9E/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HIFI</title>
+      <link>https://mint.moe/categories/hifi/</link>
+      <pubDate>Fri, 15 Jun 2018 13:20:41 +0000</pubDate>
+      
+      <guid>https://mint.moe/categories/hifi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>日常</title>
+      <link>https://mint.moe/categories/%E6%97%A5%E5%B8%B8/</link>
+      <pubDate>Mon, 26 Feb 2018 22:43:07 +0000</pubDate>
+      
+      <guid>https://mint.moe/categories/%E6%97%A5%E5%B8%B8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>其它</title>
+      <link>https://mint.moe/categories/%E5%85%B6%E5%AE%83/</link>
+      <pubDate>Thu, 19 Oct 2017 00:38:45 +0000</pubDate>
+      
+      <guid>https://mint.moe/categories/%E5%85%B6%E5%AE%83/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>设计</title>
+      <link>https://mint.moe/categories/%E8%AE%BE%E8%AE%A1/</link>
+      <pubDate>Sun, 25 Dec 2016 12:56:33 +0000</pubDate>
+      
+      <guid>https://mint.moe/categories/%E8%AE%BE%E8%AE%A1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>宝可梦</title>
+      <link>https://mint.moe/categories/%E5%AE%9D%E5%8F%AF%E6%A2%A6/</link>
+      <pubDate>Mon, 07 Nov 2016 02:03:13 +0000</pubDate>
+      
+      <guid>https://mint.moe/categories/%E5%AE%9D%E5%8F%AF%E6%A2%A6/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
