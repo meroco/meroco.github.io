@@ -23,8 +23,8 @@ home = ["HTML", "RSS", "JSON"]
     unsafe = true
 
 [params]
-  background = "black"
-  # backgroundImage = "https://i.loli.net/2020/02/19/KA8s59VWo1ZyRkP.png"
+  # background = "black"
+  backgroundImage = "/bg.jpg"
   linkColor = "babyblue"
 
   author = "MEROCO"
