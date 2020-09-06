@@ -6,70 +6,63 @@ theme = "dream"
 
 # copyright = ""
 
- googleAnalytics = "UA-82270338-1"
+googleAnalytics = "UA-82270338-1"
 
- disqusShortname = "misuzu"
+disqusShortname = "misuzu"
 
- enableRobotsTXT = true
+enableRobotsTXT = true
 
- hasCJKLanguage = true
- 
+hasCJKLanguage = true
+
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
-  
+home = ["HTML", "RSS", "JSON"]
+
 [markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
+[markup.goldmark]
+  [markup.goldmark.renderer]
+    unsafe = true
 
 [params]
   background = "black"
-  # backgroundImage = "/me/background.jpg"
-  linkColor = "seagreen"
+  # backgroundImage = "https://i.loli.net/2020/02/19/KA8s59VWo1ZyRkP.png"
+  linkColor = "babyblue"
 
   author = "MEROCO"
-  description = "Radical Dreamers."
+  description = "摄影/绘画"
   avatar = "https://i.loli.net/2020/02/19/KA8s59VWo1ZyRkP.png"
   motto = "See you, space cowboy..."
   categoriesLimitInHeader = 5
-    
+
   rss = true
 
   # utterancesRepo = ""
   
   email = "meroco.xu@gmail.com"
-  weibo = "meroco"
   # twitter = ""
   # facebook = ""
   # instagram = ""
-  # linkedin = ""
   # github = ""
-  # stackoverflow = ""
-  # codepen = ""
+  weibo = "meroco"
+  qq = "6533419"
 
   siteStartYear = 2016
 
   favicon = "https://i.loli.net/2020/02/20/Sqf9cNiLoZ3z781.png"
-
-  highlightjs = true
-  # highlightjsCDN = "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"
-highlightjsExtraLanguages = ["ocaml"]
-  highlightjsTheme = "gruvbox-light"
-  highlightjsThemeDark = "gruvbox-dark"
   
-  # search
-   enableSearch = true
+  highlightjs = true
+    # highlightjsCDN = "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"
+  highlightjsExtraLanguages = ["ocaml"]
+    highlightjsTheme = "gruvbox-light"
+    highlightjsThemeDark = "gruvbox-dark"
 
   # options
   showSummaryCoverInPost = true
+  
+  # search
+  enableSearch = true
 
   # dark mode
-  darkLinkColor = "darkseagreen"
+  darkLinkColor = "aqua"
   darkNav = true 
   dark404 = true
 
-[Menu]
-[[Menu.Main]]
-  Name = "首页"
-  URL = "/"
-  Weight = 1
