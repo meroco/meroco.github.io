@@ -50,10 +50,10 @@ home = ["HTML", "RSS", "JSON"]
   favicon = "https://i.loli.net/2020/02/20/Sqf9cNiLoZ3z781.png"
   
   highlightjs = true
-    # highlightjsCDN = "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"
+  # highlightjsCDN = "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js"
   highlightjsExtraLanguages = ["ocaml"]
-    highlightjsTheme = "gruvbox-light"
-    highlightjsThemeDark = "gruvbox-dark"
+  highlightjsTheme = "gruvbox-light"
+  highlightjsThemeDark = "gruvbox-dark"
 
   # options
   showSummaryCoverInPost = true

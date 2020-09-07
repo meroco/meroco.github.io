@@ -5,7 +5,6 @@ cover: https://i.loli.net/2020/02/19/hyGxJAopCd74TRf.jpg
 categories: 
       - 设计
 ---
-![Christmas_2016.jpg](https://i.loli.net/2020/02/19/hyGxJAopCd74TRf.jpg)
 
 使用软件:
  
