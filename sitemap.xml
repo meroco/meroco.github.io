@@ -43,11 +43,6 @@
   </url>
   
   <url>
-    <loc>https://mint.moe/posts/memoir_of_film_04/</loc>
-    <lastmod>2019-04-26T22:31:36+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mint.moe/posts/rollei35s/</loc>
     <lastmod>2019-04-07T15:22:20+00:00</lastmod>
   </url>
@@ -239,6 +234,10 @@
   
   <url>
     <loc>https://mint.moe/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://mint.moe/posts/memoir_of_film_04/</loc>
   </url>
   
 </urlset>
