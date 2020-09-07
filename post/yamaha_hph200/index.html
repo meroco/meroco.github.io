@@ -78,7 +78,7 @@
     <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
   </div>
   <div class="item">
-    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/mint.moe'"></i>
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/mint.moe\/'"></i>
   </div>
   <div class="item">
     <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
@@ -471,7 +471,7 @@ HPH-200 是一款略有“两头翘”现象的耳机，因此在歌德牛牛放
     <nav class="ui secondary menu dream-menu dream-socials">
   
     <div class="item">
-        <a href="feed:https//mint.moeindex.xml">
+        <a href="/index.xml">
         <i class=" rss square icon" title="RSS"></i>
       </a>
     </div>
@@ -607,7 +607,7 @@ HPH-200 是一款略有“两头翘”现象的耳机，因此在歌德牛牛放
         <nav class="ui secondary menu dream-menu dream-socials">
   
     <div class="item">
-        <a href="feed:https//mint.moeindex.xml">
+        <a href="/index.xml">
         <i class="large rss square icon" title="RSS"></i>
       </a>
     </div>
@@ -741,7 +741,7 @@ HPH-200 是一款略有“两头翘”现象的耳机，因此在歌德牛牛放
 </div>
 <script>
   $(document).ready(function () {
-    $.getJSON('https:\/\/mint.moe/index.json', function (data) {
+    $.getJSON('https:\/\/mint.moe\//index.json', function (data) {
       $('.ui.search').search({
         source: data,
         searchFields: ['title'],
