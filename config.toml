@@ -1,4 +1,4 @@
-baseurl = "https://mint.moe"
+baseurl = "https://mint.moe/"
 languageCode = "zh-Hans"
 defaultContentLanguage = "zh"
 title = "Ornithopter"
